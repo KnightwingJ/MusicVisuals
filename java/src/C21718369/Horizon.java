@@ -7,13 +7,6 @@ import processing.core.PApplet;
 
 public class Horizon extends PApplet {
     Audio1 a1;
-    //AudioBuffer ab;
-    //float average = 0;
-    //float sum = 0;
-    //float off = 0;
-    //float smoothedAmplitude=0;
-    // Calculate sum and average of the samples
-    // Also lerp each element of buffer;
 
     public Horizon(Audio1 a1) {
         this.a1 = a1;

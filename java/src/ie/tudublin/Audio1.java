@@ -5,6 +5,7 @@ package ie.tudublin;
 
 import C21718369.*;
 import C2175505.*;
+import C21397083.*;
 import ddf.minim.AudioBuffer;
 import ddf.minim.AudioInput;
 import ddf.minim.AudioPlayer;
@@ -22,6 +23,7 @@ public class Audio1 extends Visual {
 	public Timer timer;
 	Horizon hz;
 	Eye ey;
+	SolarSystem ss;
 
 	int mode = 0;
 	float seconds = 0;
@@ -55,6 +57,7 @@ public class Audio1 extends Visual {
 		startMinim();
 		hz = new Horizon(this);
 		ey = new Eye(this);
+		ss=new SolarSystem(this);
 
 		loadAudio("Eyelar.mp3");
 		y = height / 2;
@@ -105,26 +108,9 @@ public class Audio1 extends Visual {
 
 	public void draw() {
 		// timer.update();
-		float halfH = height / 2;
-		float halfW = width / 2;
-
 		off += 1;
 		background(0);
-		// Calculate sum and average of the samples
-		// Also lerp each element of buffer;
-		/*
-		 * for (int i = 0; i < ab.size(); i++) {
-		 * sum += abs(ab.get(i));
-		 * }
-		 * average = sum / (float) ab.size();
-		 * 
-		 * smoothedAmplitude = lerp(smoothedAmplitude, average, 0.2f);
-		 */
 		calculateAverageAmplitude();
-
-		float cx = width / 2;
-		float cy = height / 2;
-
 		// float seconds = millis() / 1000.0f;
 		System.out.println(timer.seconds());
 
@@ -245,69 +231,8 @@ public class Audio1 extends Visual {
 
 			// Solar System
 		} else if (timer.seconds() >= 20 && timer.seconds() < 35) {
-			float r = map(getSmoothedAmplitude(), 0, 0.5f, 100, 2000);
-			background(0);
-			stroke(0);
-			speed = map(80, 0, width, 0, 50);
-
-			for (int i = 0; i < stars.size(); i++) {
-				stars.get(i).update();
-				stars.get(i).show();
-			}
-
-			// Translate to center of window to draw the sun.
-			translate(width / 2, height / 2);
-			fill(84, 143, 168);
-			ellipse(0, 0, 320, 320);
-			fill(0);
-			ellipse(0, 0, ((r + 150) + (getSmoothedAmplitude() - 500)) / 2,
-					((r + 150) + (getSmoothedAmplitude() - 500)) / 2);
-
-			// The earth rotates around the sun
-			pushMatrix();
-			rotate(theta);
-			translate(250, 0);
-			fill(5, 68, 94);
-			ellipse(0, 0, 160, 160);
-
-			// Moon #1 rotates around the earth
-			// pushMatrix() is called to save the transformation state before drawing moon
-			// #1.
-			// This way we can pop and return to earth before drawing moon #2.
-			// Both moons rotate around the earth (which itself is rotating around the sun).
-			// pushMatrix();
-			rotate(-theta * 4);
-			translate(150, 0);
-			fill(24, 154, 180);
-			ellipse(0, 0, 60, 60);
-			// popMatrix();
-
-			// Moon #2 also rotates around the earth
-			// pushMatrix();
-			rotate(theta * 2);
-			translate(100, 0);
-			fill(212, 241, 244);
-			ellipse(0, 0, 30, 30);
-			// popMatrix();
-
-			// pushMatrix();
-			rotate(-theta * 4);
-			translate(230, 0);
-			fill(50, 255, 200);
-			ellipse(0, 0, 45, 45);
-			// popMatrix();
-
-			// pushMatrix();
-			rotate(-theta * 4);
-			translate(285, 0);
-			fill(117, 230, 218);
-			ellipse(0, 0, 90, 90);
-			// popMatrix();
-
-			popMatrix();
-
-			theta += 0.01;
-
+			ss.render();
+			
 		} // else if (timer.seconds() >= 25 && timer.seconds() < 35) {
 
 		// }

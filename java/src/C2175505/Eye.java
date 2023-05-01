@@ -39,16 +39,10 @@ public class Eye extends PApplet {
             float halfW=a1.width/2;
 
 			float smoothedAmplitude = 0;
-			/*for (int i = 0; i < ab.size(); i++) {
-				total += abs(ab.get(i));
-			}
-			amplitude = total / ab.size();
-			smoothedAmplitude = lerp(getSmoothedAmplitude(), amplitude, 0.1f);
-			*/
-			a1.calculateAverageAmplitude();
+			//a1.calculateAverageAmplitude();
 			// make visualizer more intense
-			smoothedAmplitude =a1.getSmoothedAmplitude();
-			//smoothedAmplitude =smoothedAmplitude* 3;
+			//smoothedAmplitude =a1.getSmoothedAmplitude();
+			smoothedAmplitude =a1.getSmoothedAmplitude()* 3;
 
 			// backgound colour
 			a1.background(0, 0, 0);
@@ -68,7 +62,7 @@ public class Eye extends PApplet {
 				a1.stroke(84, 143, 168);
 				a1.strokeWeight(5);
 				// make the ring go crazy and randomly but still on sync to music
-				float r = a1.width / 9 + (a1.getSmoothedAmplitude() * random(10, 150) * 2);
+				float r = a1.width / 9 + (smoothedAmplitude * random(10, 150));
 				float x = r * cos(i);
 				float y = r * sin(i);
 				// center the ring
@@ -79,17 +73,17 @@ public class Eye extends PApplet {
 			// create the iris
 			a1.strokeWeight(10);
 			// the iris
-			float radius = map(a1.getSmoothedAmplitude(), 0, 0.6f, a1.width / 4, 500);
+			float radius = map(smoothedAmplitude, 0, 0.6f, (a1.width / 4), 500);
 			a1.fill(255, 255, 255);
-			a1.circle(halfW, halfH, radius);
+			a1.circle(halfW, halfH, radius/3);
 
 			// draw the pupil for the eye
-			float radius2 = map(a1.getSmoothedAmplitude() * 1.5f, 0, 0.7f, a1.width / 20, 500);
+			float radius2 = map((smoothedAmplitude * 1.5f), 0, 0.7f, (a1.width / 20), 500);
 			a1.fill(0);
-			a1.circle(halfW, halfH, radius2 + 125);
+			a1.circle(halfW, halfH, (radius2 + 125)/3);
 
 			a1.fill(0, 0, 255);
-			a1.circle(halfW, halfH, a1.getSmoothedAmplitude());
+			a1.circle(halfW, halfH, smoothedAmplitude/3);
 			// drawing 3 random stars
 			a1.strokeWeight(2);
 			for (int i = 0; i < 6; i++) {
