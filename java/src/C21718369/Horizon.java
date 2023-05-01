@@ -41,7 +41,6 @@ public class Horizon extends PApplet {
 
             a1.stroke(84, 143, 168);
             a1.strokeWeight(5);
-            // make the ring go crazy and randomly but still on sync to music
             float r2 = a1.width / 9 + (a1.getSmoothedAmplitude() * random(10, 150) * 2);
             float x = r2 * cos(i);
             // center the ring

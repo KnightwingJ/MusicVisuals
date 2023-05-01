@@ -322,80 +322,11 @@ public class Audio1 extends Visual {
 		}
 
 		// eye animation
-		else if (timer.seconds() >= 48) {
-			// /ey.render();
-
-			// here is where the main eye is made too
-
-			colorMode(RGB);
-			background(0, 255, 0);
-
-			halfH = height / 2;
-
-			
-			float smoothedAmplitude = 0;
-			/*
-			 * for (int i = 0; i < ab.size(); i++) {
-			 * total += abs(ab.get(i));
-			 * }
-			 * amplitude = total / ab.size();
-			 * smoothedAmplitude = lerp(getSmoothedAmplitude(), amplitude, 0.1f);
-			 */ 
-			
-			 calculateAverageAmplitude();
-			 // make visualizer more intense
-			 smoothedAmplitude =getSmoothedAmplitude();
-			 smoothedAmplitude =smoothedAmplitude * 3;
-			 
-
-			// backgound colour
-			background(0, 0, 0);
-
-			// drawing the ring inside the eye
-			noFill();
-			beginShape();
-			for (float i = 0; i < TWO_PI; i += 0.01f) {
-				stroke(0);
-				strokeWeight(15);
-				float r1 = width / 2.5f;
-				float x2 = r1 * cos(i);
-				float y1 = r1 * pow(sin(i), 3) * 0.5f;
-				// puts the eye in the center of the screen
-				vertex(x2 + halfW, y1 + halfH);
-
-				stroke(84, 143, 168);
-				strokeWeight(5);
-				// make the ring go crazy and randomly but still on sync to music
-				float r = width / 9 + (smoothedAmplitude * random(10, 150) * 2);
-				float x = r * cos(i);
-				float y = r * sin(i);
-				// center the ring
-				vertex(x + halfW, y + halfH);
-			}
-			endShape(CLOSE);
-
-			// create the iris
-			strokeWeight(10);
-			// the iris
-			float radius = map(smoothedAmplitude, 0, 0.6f, width / 4, 500);
-			fill(255, 255, 255);
-			circle(halfW, halfH, radius);
-
-			// draw the pupil for the eye
-			float radius2 = map(smoothedAmplitude * 1.5f, 0, 0.7f, width / 20, 500);
-			fill(0);
-			circle(halfW, halfH, radius2 + 125);
-
-			fill(0, 0, 255);
-			circle(halfW, halfH, smoothedAmplitude);
-			// drawing 3 random stars
-			strokeWeight(2);
-			for (int i = 0; i < 6; i++) {
-				fill(0);
-				stroke(0);
-				star(random(width), random(height), 10, 19, 5);
-				delay(10);
-			}
+		else if (timer.seconds() >= 48 && timer.seconds()<66) {
+			ey.render();
+		}
+		else if(timer.seconds() >=66){
+			System.exit(0);
 		}
 
 	}
