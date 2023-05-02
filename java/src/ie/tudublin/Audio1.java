@@ -10,7 +10,6 @@ import ddf.minim.AudioBuffer;
 import ddf.minim.AudioInput;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
-import processing.core.PApplet;
 import processing.core.PVector;
 
 import java.util.ArrayList;
@@ -24,6 +23,7 @@ public class Audio1 extends Visual {
 	Horizon hz;
 	Eye ey;
 	SolarSystem ss;
+	introduction intro;
 
 	int mode = 0;
 	float seconds = 0;
@@ -43,7 +43,7 @@ public class Audio1 extends Visual {
 
 	public void settings() {
 		// size(2560 ,1600);
-		fullScreen(P3D);
+		fullScreen(P3D,SPAN);
 	}
 
 	public void setup() {
@@ -58,6 +58,7 @@ public class Audio1 extends Visual {
 		hz = new Horizon(this);
 		ey = new Eye(this);
 		ss=new SolarSystem(this);
+		intro=new introduction(this);
 
 		loadAudio("Eyelar.mp3");
 		y = height / 2;
@@ -115,120 +116,9 @@ public class Audio1 extends Visual {
 		System.out.println(timer.seconds());
 
 		// Intro
-		if (timer.seconds() >= 2 && timer.seconds() < 6) {
-
-			speed = map(50, 0, width, 0, 50);
-			background(0);
-
-			for (int i = 0; i < stars.size(); i++) {
-				stars.get(i).update();
-				stars.get(i).show();
-			}
-
-			strokeWeight(1);
-
-			rectMode(PApplet.CENTER);
-
-			fill(0, 0, 255);
-			textSize(200);
-			text("E", width / 2 - 350, height / 2 + 80);
-
-		}
-
-		else if (timer.seconds() >= 6 && timer.seconds() < 9) {
-
-			speed = map(50, 0, width, 0, 50);
-			background(0);
-
-			for (int i = 0; i < stars.size(); i++) {
-				stars.get(i).update();
-				stars.get(i).show();
-			}
-
-			strokeWeight(1);
-
-			rectMode(PApplet.CENTER);
-
-			fill(5, 92, 242);
-			textSize(200);
-			text("EY", width / 2 - 350, height / 2 + 80);
-
-		}
-
-		else if (timer.seconds() >= 9 && timer.seconds() < 12) {
-
-			speed = map(50, 0, width, 0, 50);
-			background(0);
-
-			for (int i = 0; i < stars.size(); i++) {
-				stars.get(i).update();
-				stars.get(i).show();
-			}
-
-			strokeWeight(1);
-
-			rectMode(PApplet.CENTER);
-
-			fill(12, 71, 173);
-			textSize(200);
-			text("EYE", width / 2 - 350, height / 2 + 80);
-
-		}
-
-		else if (timer.seconds() >= 12 && timer.seconds() < 15) {
-
-			speed = map(50, 0, width, 0, 50);
-			background(0);
-
-			for (int i = 0; i < stars.size(); i++) {
-				stars.get(i).update();
-				stars.get(i).show();
-			}
-
-			strokeWeight(1);
-
-			rectMode(PApplet.CENTER);
-			fill(59, 127, 245);
-			textSize(200);
-			text("EYEL", width / 2 - 350, height / 2 + 80);
-
-		}
-
-		else if (timer.seconds() >= 15 && timer.seconds() < 18) {
-
-			speed = map(50, 0, width, 0, 50);
-			background(0);
-
-			for (int i = 0; i < stars.size(); i++) {
-				stars.get(i).update();
-				stars.get(i).show();
-			}
-
-			strokeWeight(1);
-
-			rectMode(PApplet.CENTER);
-			fill(14, 52, 117);
-			textSize(200);
-			text("EYELA", width / 2 - 350, height / 2 + 80);
-
-		}
-		// End Intro
-		else if (timer.seconds() >= 18 && timer.seconds() < 20) {
-
-			speed = map(50, 0, width, 0, 50);
-			background(0);
-			for (int i = 0; i < stars.size(); i++) {
-				stars.get(i).update();
-				stars.get(i).show();
-			}
-
-			strokeWeight(1);
-
-			rectMode(PApplet.CENTER);
-			fill(12, 98, 245);
-			textSize(200);
-			text("EYELAR", width / 2 - 350, height / 2 + 80);
-
+		if (timer.seconds() >= 2 && timer.seconds() < 20) {
+			intro.render();
+			
 			// Solar System
 		} else if (timer.seconds() >= 20 && timer.seconds() < 35) {
 			ss.render();
