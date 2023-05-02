@@ -25,8 +25,7 @@ public class SolarSystem extends PApplet {
 
 	public SolarSystem(Audio1 a1) {
 		this.a1 = a1;
-		for(int i=0;i<800;i++)
-		{
+		for (int i = 0; i < 800; i++) {
 			stars.add(new Star());
 		}
 	}
@@ -35,7 +34,7 @@ public class SolarSystem extends PApplet {
 		float r = map(a1.getSmoothedAmplitude(), 0, 0.5f, 100, 2000);
 		a1.background(0);
 		a1.stroke(0);
-		speed = map(80, 0, a1.width, 0, 50);
+		speed = map(50, 0, a1.width, 0, 50);
 
 		for (int i = 0; i < stars.size(); i++) {
 			stars.get(i).update();
@@ -43,12 +42,11 @@ public class SolarSystem extends PApplet {
 		}
 
 		a1.translate(a1.width / 2, (a1.height / 2));
-		
 		a1.fill(84, 143, 168);
+		a1.ellipse(0, 0, 320, 320);
+		a1.noFill();
 		a1.ellipse(0, 0, ((r + 150) + (a1.getSmoothedAmplitude() - 500)) / 2,
 				((r + 150) + (a1.getSmoothedAmplitude() - 500)) / 2);
-		a1.fill(0);
-		a1.ellipse(0, 0, 320, 320);
 
 		a1.pushMatrix();
 		a1.rotate(theta);
@@ -58,21 +56,29 @@ public class SolarSystem extends PApplet {
 
 		a1.rotate(-theta * 4);
 		a1.translate(150, 0);
+		a1.fill(212, 241, 244);
+		a1.ellipse(-40, -40, 40, 40);
 		a1.fill(24, 154, 180);
 		a1.ellipse(0, 0, 60, 60);
 
 		a1.rotate(theta * 2);
 		a1.translate(100, 0);
+		a1.fill(50, 255, 200);
+		a1.ellipse(-30, 30, 15, 15);
 		a1.fill(212, 241, 244);
 		a1.ellipse(0, 0, 30, 30);
 
 		a1.rotate(-theta * 4);
 		a1.translate(230, 0);
+		a1.fill(212, 241, 244);
+		a1.ellipse(-55, 55, 30, 30);
 		a1.fill(50, 255, 200);
 		a1.ellipse(0, 0, 45, 45);
 
 		a1.rotate(-theta * 4);
 		a1.translate(285, 0);
+		a1.fill(212, 241, 244);
+		a1.ellipse(-65, 65, 55, 55);
 		a1.fill(117, 230, 218);
 		a1.ellipse(0, 0, 90, 90);
 

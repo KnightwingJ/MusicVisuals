@@ -4,8 +4,9 @@ package ie.tudublin;
 // (5, 68, 94)		(24, 154, 180)		(117, 230, 218)		(212, 241, 244)
 
 import C21718369.*;
-import C2175505.*;
+import C21755305.*;
 import C21397083.*;
+import C21461876.*;
 import ddf.minim.AudioBuffer;
 import ddf.minim.AudioInput;
 import ddf.minim.AudioPlayer;
@@ -23,7 +24,9 @@ public class Audio1 extends Visual {
 	Horizon hz;
 	Eye ey;
 	SolarSystem ss;
-	introduction intro;
+	//introduction intro;
+	Eyelar intro;
+	EyelarOutro outro;
 
 	int mode = 0;
 	float seconds = 0;
@@ -58,7 +61,8 @@ public class Audio1 extends Visual {
 		hz = new Horizon(this);
 		ey = new Eye(this);
 		ss=new SolarSystem(this);
-		intro=new introduction(this);
+		intro=new Eyelar(this);
+		outro=new EyelarOutro(this);
 
 		loadAudio("Eyelar.mp3");
 		y = height / 2;
@@ -113,35 +117,53 @@ public class Audio1 extends Visual {
 		background(0);
 		calculateAverageAmplitude();
 		// float seconds = millis() / 1000.0f;
-		System.out.println(timer.seconds());
+		//System.out.println(timer.seconds());
 
 		// Intro
-		if (timer.seconds() >= 2 && timer.seconds() < 20) {
+		if (timer.seconds() >= 0 && timer.seconds() < 25) {
 			intro.render();
 			
 			// Solar System
-		} else if (timer.seconds() >= 20 && timer.seconds() < 35) {
+		} else if (timer.seconds() >= 25 && timer.seconds() < 35) {
 			ss.render();
 			
-		} // else if (timer.seconds() >= 25 && timer.seconds() < 35) {
-
-		// }
+		}
 
 		// Horizon vertex animation
-		else if (timer.seconds() >= 35 && timer.seconds() < 45) {
+		else if (timer.seconds() >= 35 && timer.seconds() < 50) {
 			hz.render();
 		}
 
-		else if (timer.seconds() >= 45 && timer.seconds() < 48) {
-			background(0);
+		else if (timer.seconds() >= 50 && timer.seconds() < 65) {
+			ey.render();
 		}
 
 		// eye animation
-		else if (timer.seconds() >= 48 && timer.seconds()<66) {
+		else if (timer.seconds() >= 65 && timer.seconds()<78) {
+			hz.render();
+		}
+		else if(timer.seconds() >=78 && timer.seconds()<90){
+			ss.render();
+			//exit();
+		}
+		else if (timer.seconds() >=90 && timer.seconds()<136){
 			ey.render();
 		}
-		else if(timer.seconds() >=66){
-			System.exit(0);
+		else if (timer.seconds() >=136 && timer.seconds()<150){
+			hz.render();
+		}
+		else if (timer.seconds() >=150 && timer.seconds()<170){
+			ss.render();
+			
+		}
+		else if (timer.seconds() >=170 && timer.seconds()<190){
+			hz.render();
+		}
+		else if (timer.seconds() >=190 && timer.seconds()<210){
+			outro.render();
+		}
+		else if(timer.seconds()>210){
+			exit();
 		}
 
 	}

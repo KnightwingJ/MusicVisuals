@@ -19,17 +19,9 @@ public class Main
         processing.core.PApplet.runSketch( a, new Audio1());		
 	}
 
-	/*public void random()
-	{
-		String[] a={"MAIN"};
-		processing.core.PApplet.runSketch(a, random());
-	}*/
-
 	public static void main(String[] args)
 	{
 		Main main = new Main();
-		//MyVisual example = new MyVisual();
-				
 		main.Audio1();	
 		//main.startUI();;
 	
