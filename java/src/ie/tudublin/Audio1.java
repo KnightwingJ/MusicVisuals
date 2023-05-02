@@ -46,7 +46,7 @@ public class Audio1 extends Visual {
 
 	public void settings() {
 		// size(2560 ,1600);
-		fullScreen(P3D,SPAN);
+		fullScreen(P3D);
 	}
 
 	public void setup() {
